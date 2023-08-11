@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-pvc
+spec:
+  containers:
+  - name: busybox
+    image: postgres:15 
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+    - name: data-volume-0
+      mountPath: /data-0
+    #- name: data-volume-1
+    #  mountPath: /data-1
+  volumes:
+  - name: data-volume-0
+    emptyDir: {}
+  #- name: data-volume-1
+  #  persistentVolumeClaim:
+  #    claimName: claim-name

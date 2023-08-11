@@ -1,0 +1,23 @@
+apiVersion: acid.zalan.do/v1
+kind: postgresql
+metadata:
+  labels:
+    app.kubernetes.io/instance: postgresql
+    app.kubernetes.io/name: nextcloud
+  name: my-postgres
+  annotations:
+    "acid.zalan.do/controller": "my-controller"
+spec:
+  databases:
+    pgdb: pguser
+  numberOfInstances: 2
+  postgresql:
+    version: "14"
+  teamId: pg
+  users:
+    pguser: []
+  volume:
+    size: 20Gi
+  storageClass: "default"
+  enableLogicalBackup: true
+  logicalBackupSchedule: "0 */3 * * *"
